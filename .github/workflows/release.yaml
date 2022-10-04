@@ -20,8 +20,6 @@ jobs:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: |
-        echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-        # PACKAGE_VERSION=
-        # echo "publishing version ${PACKAGE_VERSION}"
-        # python setup.py sdist bdist_wheel
-        # twine upload dist/*
+        PACKAGE_VERSION=${{  github.ref_name }}
+        python setup.py sdist bdist_wheel
+        twine upload dist/*
